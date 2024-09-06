@@ -45,12 +45,3 @@ MovieC MovieCBuilder::Build()
     this->m_slots.clear();
     return movie;
 }
-
-// bool MovieC::AddSlot(Slot slot) {
-//     if(slot.isReserved){
-//         return false;
-//     }
-//     slot.isReserved = true;
-//     m_slots.emplace_back(slot);
-//     return true;
-// }

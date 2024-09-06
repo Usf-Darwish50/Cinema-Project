@@ -134,19 +134,19 @@ int main()
                             .AddSlot(&slot1)
                             .Build();
 
-    // auto movie2 = movieBuilder.SetTitle("The Shawshank Redemption")
-    //                         .SetRating(9.3)
-    //                         .AddGenre(MovieGenreE::DRAMA)
-    //                         .AddSlot(&slot3)
-    //                         .Build();
+    auto movie2 = movieBuilder.SetTitle("The Shawshank Redemption")
+                            .SetRating(9.3)
+                            .AddGenre(MovieGenreE::DRAMA)
+                            .AddSlot(&slot3)
+                            .Build();
 
-    // auto movie3 = movieBuilder.SetTitle("The Godfather")    
-    //                         .SetRating(9.2)
-    //                         .AddGenre(MovieGenreE::DRAMA)
-    //                         .AddSlot(&slot2)
-    //                         .AddSlot(&slot4)
-    //                         .AddSlot(&slot3)
-    //                         .Build();
+    auto movie3 = movieBuilder.SetTitle("The Godfather")    
+                            .SetRating(9.2)
+                            .AddGenre(MovieGenreE::DRAMA)
+                            .AddSlot(&slot2)
+                            .AddSlot(&slot4)
+                            .AddSlot(&slot3)
+                            .Build();
 
     // movie1.AddSlot(slot1);
     // movie1.AddSlot(slot2);
@@ -155,8 +155,8 @@ int main()
     // movie2.AddSlot(slot5);
 
     cinema.AddMovie(movie1);
-    // cinema.AddMovie(movie2);
-    // cinema.AddMovie(movie3);
+    cinema.AddMovie(movie2);
+    cinema.AddMovie(movie3);
 
     // Print all movies
     auto movie = cinema.ShowMovies();
