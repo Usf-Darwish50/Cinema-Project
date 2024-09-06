@@ -5,10 +5,13 @@
 #include <vector>
 #include <memory>
 #include <optional>
+#include <iostream>
 
 #include "../Movie/Movie.hpp"
 #include "../Customer/User.hpp"
 #include "Common.hpp" 
+
+using namespace std;
 
 class CinemaC {
     public:
@@ -17,6 +20,7 @@ class CinemaC {
         const vector<MovieC>& GetMovies() const { return m_movies; }
         void AddUser(const CustomerC& user) { m_users.emplace_back(user); }
         const vector<CustomerC>& GetUsers() const { return m_users; }
+        MovieC ShowMovies();
 
     private:
         static unique_ptr<CinemaC> m_cinemaInst;

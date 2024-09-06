@@ -1,0 +1,13 @@
+//
+// Created by Khaled on 9/6/2024.
+//
+
+#ifndef SOFTWARE_DESIGN_WORKSHOP_TICKET_H
+#define SOFTWARE_DESIGN_WORKSHOP_TICKET_H
+
+class Ticket {
+
+};
+
+
+#endif //SOFTWARE_DESIGN_WORKSHOP_TICKET_H

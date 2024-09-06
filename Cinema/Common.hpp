@@ -37,5 +37,11 @@ enum class HallE {
     HALL_3
 };
 
+enum class SeatE {
+    Premium,
+    Standard,
+    Regular
+};
+
 
 #endif
