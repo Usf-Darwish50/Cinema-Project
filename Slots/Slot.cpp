@@ -3,9 +3,9 @@
 //
 
 #include "Slot.h"
-
-Slot::Slot(DayE day_, TimeE time_) {
+Slot::Slot(DayE day_, TimeE time_, Hall hall){
     day = day_;
     time = time_;
     isReserved = false;
+    this->hall = hall;
 }

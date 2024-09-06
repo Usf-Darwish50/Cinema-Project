@@ -10,12 +10,12 @@ using namespace std;
 #include "../Hall/Hall.h"
 #include "../Seat/Seat.h"
 #include<vector>
-#include<map>
+#include <map>
 
 class Slot {
 public:
-    Slot(DayE day_, TimeE time_);
-    vector<Hall> halls;
+    Slot(DayE day_, TimeE time_, Hall hall);
+    Hall hall;
     bool isReserved;
     DayE day;
     TimeE time;

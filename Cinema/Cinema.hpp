@@ -9,6 +9,7 @@
 
 #include "../Movie/Movie.hpp"
 #include "../Customer/User.hpp"
+#include "../Slots/Slot.h"
 #include "Common.hpp" 
 
 using namespace std;
@@ -21,6 +22,7 @@ class CinemaC {
         void AddUser(const CustomerC& user) { m_users.emplace_back(user); }
         const vector<CustomerC>& GetUsers() const { return m_users; }
         MovieC ShowMovies();
+        Slot ShowMovieSlots(MovieC movie);
 
     private:
         static unique_ptr<CinemaC> m_cinemaInst;
@@ -52,7 +54,7 @@ class CinemaC {
             {TimeE::THREE_PM, 2},
             {TimeE::SIX_PM, 15},
             {TimeE::NINE_PM, 25},
-            {TimeE::TWELEVE_AM, 30}
+            {TimeE::TWELVE_AM, 30}
         };
 };
 #endif

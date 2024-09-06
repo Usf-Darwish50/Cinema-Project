@@ -57,26 +57,6 @@ int main()
         //TODO: ERROR after printing user it produces segemntaion fault but output is correct
     }
 
-    // Create a few movies
-    MovieCBuilder movieBuilder;
-    auto movie1 = movieBuilder.SetTitle("The Dark Knight")
-                            .SetRating(9.0)
-                            .AddGenre(MovieGenreE::ACTION)
-                            .AddGenre(MovieGenreE::THRILLER)
-                            .AddShowTime(ShowTimeS{DayE::SATURDAY, TimeE::NINE_AM})
-                            .Build();
-
-    auto movie2 = movieBuilder.SetTitle("The Shawshank Redemption")
-                            .SetRating(9.3)
-                            .AddGenre(MovieGenreE::DRAMA)
-                            .AddShowTime(ShowTimeS{DayE::SUNDAY, TimeE::TWELVE_PM})
-                            .Build();
-
-    auto movie3 = movieBuilder.SetTitle("The Godfather")    
-                            .SetRating(9.2)
-                            .AddGenre(MovieGenreE::DRAMA)
-                            .AddShowTime(ShowTimeS{DayE::MONDAY, TimeE::THREE_PM})
-                            .Build();
 
     Seat seat1(SeatE::Premium)
     , seat2(SeatE::Regular)
@@ -104,25 +84,49 @@ int main()
         hall3.seats.emplace_back(seat3);
     }
 
-    Slot slot1(DayE::FRIDAY, TimeE::NINE_PM)
-    , slot2(DayE::FRIDAY, TimeE::NINE_PM)
-    , slot3(DayE::SATURDAY, TimeE::TWELVE_PM)
-    , slot4(DayE::SUNDAY, TimeE::SIX_PM)
-    , slot5(DayE::SUNDAY, TimeE::THREE_PM)
-    , slot7(DayE::WEDNESDAY, TimeE::TWELEVE_AM)
-    , slot6(DayE::THURSDAY, TimeE::TWELEVE_AM);
+    Slot slot1(DayE::FRIDAY, TimeE::NINE_PM, hall1)
+    , slot2(DayE::FRIDAY, TimeE::NINE_PM, hall2)
+    , slot3(DayE::SATURDAY, TimeE::TWELVE_PM, hall3)
+    , slot4(DayE::SUNDAY, TimeE::SIX_PM, hall1)
+    , slot5(DayE::SUNDAY, TimeE::THREE_PM, hall2)
+    , slot7(DayE::WEDNESDAY, TimeE::TWELVE_AM, hall1)
+    , slot6(DayE::THURSDAY, TimeE::TWELVE_AM, hall3);
 
-    slot1.halls.emplace_back(hall1);
-    slot1.halls.emplace_back(hall2);
-    slot2.halls.emplace_back(hall1);
-    slot3.halls.emplace_back(hall1);
-    slot3.halls.emplace_back(hall2);
-    slot4.halls.emplace_back(hall3);
-    slot5.halls.emplace_back(hall3);
-    slot6.halls.emplace_back(hall2);
-    slot6.halls.emplace_back(hall3);
-    slot7.halls.emplace_back(hall2);
-    slot7.halls.emplace_back(hall3);
+    // slot1.halls.emplace_back(hall1);
+    // slot1.halls.emplace_back(hall2);
+    // slot2.halls.emplace_back(hall1);
+    // slot3.halls.emplace_back(hall1);
+    // slot3.halls.emplace_back(hall2);
+    // slot4.halls.emplace_back(hall3);
+    // slot5.halls.emplace_back(hall3);
+    // slot6.halls.emplace_back(hall2);
+    // slot6.halls.emplace_back(hall3);
+    // slot7.halls.emplace_back(hall2);
+    // slot7.halls.emplace_back(hall3);
+    slot1.hall = hall1;
+    slot2.hall = hall2;
+    slot3.hall = hall3;
+
+    // Create a few movies
+    MovieCBuilder movieBuilder;
+    auto movie1 = movieBuilder.SetTitle("The Dark Knight")
+                            .SetRating(9.0)
+                            .AddGenre(MovieGenreE::ACTION)
+                            .AddGenre(MovieGenreE::THRILLER)
+                            .AddSlot(Slot{DayE::SATURDAY, TimeE::NINE_AM, hall1})
+                            .Build();
+
+    auto movie2 = movieBuilder.SetTitle("The Shawshank Redemption")
+                            .SetRating(9.3)
+                            .AddGenre(MovieGenreE::DRAMA)
+                            .AddSlot(Slot{DayE::SUNDAY, TimeE::TWELVE_PM, hall2})
+                            .Build();
+
+    auto movie3 = movieBuilder.SetTitle("The Godfather")    
+                            .SetRating(9.2)
+                            .AddGenre(MovieGenreE::DRAMA)
+                            .AddSlot(Slot{DayE::MONDAY, TimeE::THREE_PM, hall3})
+                            .Build();
 
     movie1.AddSlot(slot1);
     movie1.AddSlot(slot2);
@@ -141,8 +145,10 @@ int main()
 
     cout << "Selected movie is: " << movie.GetTitle() << endl;
 
+    cinema.ShowMovieSlots(movie);
     // after picking a movie, go through the slots in order to find the 
     // slots that contain the movie.
+    
 #endif
 
 #ifdef TESTING_PAYMENT

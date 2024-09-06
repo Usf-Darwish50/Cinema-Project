@@ -28,7 +28,7 @@ enum class TimeE {
     THREE_PM,
     SIX_PM,
     NINE_PM,
-    TWELEVE_AM
+    TWELVE_AM
 };
 
 enum class HallE {

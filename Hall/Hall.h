@@ -10,7 +10,7 @@
 
 class Hall {
 public:
-    Hall(HallE type_);
+    Hall(HallE type_ = HallE::HALL_1);
     HallE type;
     std::vector<Seat> seats;
 };
