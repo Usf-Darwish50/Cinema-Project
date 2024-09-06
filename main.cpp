@@ -120,6 +120,10 @@ int main()
     slot1.hall = hall1;
     slot2.hall = hall2;
     slot3.hall = hall3;
+    slot4.hall = hall1;
+    slot5.hall = hall2;
+    slot6.hall = hall3;
+    slot7.hall = hall3;
 
     // Create a few movies
     MovieCBuilder movieBuilder;

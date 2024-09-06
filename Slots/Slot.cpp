@@ -28,6 +28,7 @@ Seat Slot::ShowSeats()
         }
         cout << "\n";
         ++i;
+        j = 0;
     }
 
     cout << "Please select a seat";
