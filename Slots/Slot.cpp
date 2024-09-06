@@ -3,7 +3,7 @@
 //
 
 #include "Slot.h"
-Slot::Slot(DayE day_, TimeE time_, Hall hall){
+Slot::Slot(DayE day_, TimeE time_, Hall *hall){
     day = day_;
     time = time_;
     isReserved = false;
@@ -12,7 +12,7 @@ Slot::Slot(DayE day_, TimeE time_, Hall hall){
 
 Seat Slot::ShowSeats()
 {
-    auto seats = hall.GetSeats();
+    auto seats = hall->GetSeats();
     int i = 0, j = 0, n = seats[0].size();
 
     for (auto&& row : seats)

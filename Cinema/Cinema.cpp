@@ -34,7 +34,7 @@ MovieC CinemaC::ShowMovies()
     std::getline(std::cin, movieTitle);
 
     if (movieMap.find(movieTitle) != movieMap.end())
-        return *movieMap[movieTitle];
+        return *(movieMap[movieTitle]);
     else
         throw ("Invalid Movie");
 }
@@ -81,7 +81,7 @@ Slot CinemaC::ShowMovieSlots(MovieC movie)
     for (auto&& slot : slots)
     {
         // TODO: StringViewer function (adapter class)
-        std::string slotStr = to_string(slotIdx++) + ") " + "Day: " + dayToString(slot.day) + "\n" + "Time: " + timeToString(slot.time) + "\n" + "Hall: " + hallToString(slot.hall.type) + "\n";
+        std::string slotStr = to_string(slotIdx++) + ") " + "Day: " + dayToString(slot->day) + "\n" + "Time: " + timeToString(slot->time) + "\n" + "Hall: " + hallToString(slot->hall->type) + "\n";
 
         slotStr += "-----------------------------\n";
 
@@ -91,7 +91,7 @@ Slot CinemaC::ShowMovieSlots(MovieC movie)
     cout << "\nSelect a slot by entering it's number\n";
     int selection;
     cin >> selection;
-    return selection - 1 < slots.size() ? slots[selection - 1] : throw ("invalid slot selection");
+    return selection - 1 < slots.size() ? *slots[selection - 1] : throw ("invalid slot selection");
 }
 
 Seat CinemaC::ShowSlotSeats(Slot slot)

@@ -17,8 +17,8 @@ using namespace std;
 class Slot {
 public:
     Seat ShowSeats();
-    Slot(DayE day_, TimeE time_, Hall hall);
-    Hall hall;
+    Slot(DayE day_, TimeE time_, Hall *hall);
+    Hall *hall;
     bool isReserved;
     DayE day;
     TimeE time;

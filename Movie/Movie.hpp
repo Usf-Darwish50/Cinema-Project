@@ -22,7 +22,7 @@ enum class MovieGenreE {
 
 class MovieC {
 public:
-    MovieC(const string &title, const vector<MovieGenreE> &genre, float rating,  vector<Slot> slots) :
+    MovieC(const string &title, const vector<MovieGenreE> &genre, float rating,  vector<Slot*> slots) :
             m_title(title), m_genre(genre), m_rating(rating), m_slots(slots) {}
 
     void SetTitle(const string &title) { m_title = title; }
@@ -31,7 +31,7 @@ public:
 
     void SetGenre(const vector<MovieGenreE> &genre) { m_genre = genre; }
 
-    const vector<Slot>& GetSlots() const { return m_slots; }
+    const vector<Slot*>& GetSlots() const { return m_slots; }
 
     void AddGenre(MovieGenreE genre) { m_genre.emplace_back(genre); }
 
@@ -46,7 +46,7 @@ public:
     bool AddSlot(Slot slot);
 
 private:
-    vector<Slot> m_slots;
+    vector<Slot*> m_slots;
     string m_title;
     vector<MovieGenreE> m_genre;
     float m_rating;
@@ -69,7 +69,7 @@ public:
 
     MovieCBuilder &AddGenre(MovieGenreE genre);
 
-    MovieCBuilder &AddSlot(const Slot &slot);
+    MovieCBuilder &AddSlot(Slot *slot);
     
     MovieC Build();
 
@@ -77,7 +77,7 @@ private:
     string m_title;
     vector<MovieGenreE> m_genre;
     float m_rating = -1.0f;
-    vector<Slot> m_slots;
+    vector<Slot*> m_slots;
 };
 
 #endif

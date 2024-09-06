@@ -98,13 +98,13 @@ int main()
         hall3.seats[2].emplace_back(seat3);
     }
 
-    Slot slot1(DayE::FRIDAY, TimeE::NINE_PM, hall1)
-    , slot2(DayE::FRIDAY, TimeE::NINE_PM, hall2)
-    , slot3(DayE::SATURDAY, TimeE::TWELVE_PM, hall3)
-    , slot4(DayE::SUNDAY, TimeE::SIX_PM, hall1)
-    , slot5(DayE::SUNDAY, TimeE::THREE_PM, hall2)
-    , slot7(DayE::WEDNESDAY, TimeE::TWELVE_AM, hall1)
-    , slot6(DayE::THURSDAY, TimeE::TWELVE_AM, hall3);
+    Slot slot1(DayE::FRIDAY, TimeE::NINE_PM, &hall1)
+    , slot2(DayE::FRIDAY, TimeE::NINE_PM, &hall2)
+    , slot3(DayE::SATURDAY, TimeE::TWELVE_PM, &hall3)
+    , slot4(DayE::SUNDAY, TimeE::SIX_PM, &hall1)
+    , slot5(DayE::SUNDAY, TimeE::THREE_PM, &hall2)
+    , slot7(DayE::WEDNESDAY, TimeE::TWELVE_AM, &hall1)
+    , slot6(DayE::THURSDAY, TimeE::TWELVE_AM, &hall3);
 
     // slot1.halls.emplace_back(hall1);
     // slot1.halls.emplace_back(hall2);
@@ -117,13 +117,13 @@ int main()
     // slot6.halls.emplace_back(hall3);
     // slot7.halls.emplace_back(hall2);
     // slot7.halls.emplace_back(hall3);
-    slot1.hall = hall1;
-    slot2.hall = hall2;
-    slot3.hall = hall3;
-    slot4.hall = hall1;
-    slot5.hall = hall2;
-    slot6.hall = hall3;
-    slot7.hall = hall3;
+    slot1.hall = &hall1;
+    slot2.hall = &hall2;
+    slot3.hall = &hall3;
+    slot4.hall = &hall1;
+    slot5.hall = &hall2;
+    slot6.hall = &hall3;
+    slot7.hall = &hall3;
 
     // Create a few movies
     MovieCBuilder movieBuilder;
@@ -131,28 +131,28 @@ int main()
                             .SetRating(9.0)
                             .AddGenre(MovieGenreE::ACTION)
                             .AddGenre(MovieGenreE::THRILLER)
-                            .AddSlot(Slot{DayE::SATURDAY, TimeE::NINE_AM, hall1})
+                            .AddSlot(&slot1)
                             .Build();
 
     auto movie2 = movieBuilder.SetTitle("The Shawshank Redemption")
                             .SetRating(9.3)
                             .AddGenre(MovieGenreE::DRAMA)
-                            .AddSlot(Slot{DayE::SUNDAY, TimeE::TWELVE_PM, hall2})
+                            .AddSlot(&slot3)
                             .Build();
 
     auto movie3 = movieBuilder.SetTitle("The Godfather")    
                             .SetRating(9.2)
                             .AddGenre(MovieGenreE::DRAMA)
-                            .AddSlot(slot1)
-                            .AddSlot(slot2)
-                            .AddSlot(slot3)
+                            .AddSlot(&slot2)
+                            .AddSlot(&slot4)
+                            .AddSlot(&slot3)
                             .Build();
 
-    movie1.AddSlot(slot1);
-    movie1.AddSlot(slot2);
-    movie1.AddSlot(slot3);
-    movie2.AddSlot(slot4);
-    movie2.AddSlot(slot5);
+    // movie1.AddSlot(slot1);
+    // movie1.AddSlot(slot2);
+    // movie1.AddSlot(slot3);
+    // movie2.AddSlot(slot4);
+    // movie2.AddSlot(slot5);
 
     cinema.AddMovie(movie1);
     cinema.AddMovie(movie2);

@@ -31,7 +31,7 @@ MovieCBuilder& MovieCBuilder::AddGenre(MovieGenreE genre)
     return *this;
 }
 
-MovieCBuilder& MovieCBuilder::AddSlot(const Slot& Slot)
+MovieCBuilder& MovieCBuilder::AddSlot(Slot* Slot)
 {
     m_slots.emplace_back(Slot);
     return *this;
