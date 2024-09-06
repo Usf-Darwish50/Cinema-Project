@@ -31,9 +31,10 @@ MovieCBuilder& MovieCBuilder::AddGenre(MovieGenreE genre)
     return *this;
 }
 
-MovieCBuilder& MovieCBuilder::AddSlot(Slot* Slot)
+MovieCBuilder& MovieCBuilder::AddSlot(Slot* slot)
 {
-    m_slots.emplace_back(Slot);
+    if (!slot->isReserved)
+        m_slots.push_back(slot);
     return *this;
 }
 
@@ -45,11 +46,11 @@ MovieC MovieCBuilder::Build()
     return movie;
 }
 
-bool MovieC::AddSlot(Slot slot) {
-    if(slot.isReserved){
-        return false;
-    }
-    slot.isReserved = true;
-    m_slots.emplace_back(slot);
-    return true;
-}
+// bool MovieC::AddSlot(Slot slot) {
+//     if(slot.isReserved){
+//         return false;
+//     }
+//     slot.isReserved = true;
+//     m_slots.emplace_back(slot);
+//     return true;
+// }

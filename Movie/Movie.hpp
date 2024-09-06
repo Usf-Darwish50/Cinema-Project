@@ -43,8 +43,6 @@ public:
 
     string GetGenreStr();
 
-    bool AddSlot(Slot slot);
-
 private:
     vector<Slot*> m_slots;
     string m_title;
