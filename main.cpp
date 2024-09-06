@@ -66,22 +66,36 @@ int main()
     , hall2(HallE::HALL_2)
     , hall3(HallE::HALL_3);
 
+
+    // Placeholder code, there should be better instantiation code (i.e: Builder) for these functions
+    hall1.seats.push_back(vector<Seat>{});
+    hall1.seats.push_back(vector<Seat>{});
+    hall1.seats.push_back(vector<Seat>{});
+
     for(int i=0; i<10; i++){
-        hall1.seats.emplace_back(seat1);
-        hall1.seats.emplace_back(seat2);
-        hall1.seats.emplace_back(seat3);
+        hall1.seats[0].emplace_back(seat1);
+        hall1.seats[1].emplace_back(seat2);
+        hall1.seats[2].emplace_back(seat3);
     }
+
+    hall2.seats.push_back(vector<Seat>{});
+    hall2.seats.push_back(vector<Seat>{});
+    hall2.seats.push_back(vector<Seat>{});
 
     for(int i=0; i<20; i++){
-        hall2.seats.emplace_back(seat1);
-        hall2.seats.emplace_back(seat2);
-        hall2.seats.emplace_back(seat3);
+        hall2.seats[0].emplace_back(seat1);
+        hall2.seats[1].emplace_back(seat2);
+        hall2.seats[2].emplace_back(seat3);
     }
 
+    hall3.seats.push_back(vector<Seat>{});
+    hall3.seats.push_back(vector<Seat>{});
+    hall3.seats.push_back(vector<Seat>{});
+
     for(int i=0; i<30; i++){
-        hall3.seats.emplace_back(seat1);
-        hall3.seats.emplace_back(seat2);
-        hall3.seats.emplace_back(seat3);
+        hall3.seats[0].emplace_back(seat1);
+        hall3.seats[1].emplace_back(seat2);
+        hall3.seats[2].emplace_back(seat3);
     }
 
     Slot slot1(DayE::FRIDAY, TimeE::NINE_PM, hall1)
@@ -145,9 +159,11 @@ int main()
 
     cout << "Selected movie is: " << movie.GetTitle() << endl;
 
-    cinema.ShowMovieSlots(movie);
+    auto slot = cinema.ShowMovieSlots(movie);
     // after picking a movie, go through the slots in order to find the 
     // slots that contain the movie.
+
+    auto seat = cinema.ShowSlotSeats(slot);
     
 #endif
 

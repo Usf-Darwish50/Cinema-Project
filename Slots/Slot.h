@@ -11,9 +11,11 @@ using namespace std;
 #include "../Seat/Seat.h"
 #include<vector>
 #include <map>
+#include <iostream>
 
 class Slot {
 public:
+    Seat ShowSeats();
     Slot(DayE day_, TimeE time_, Hall hall);
     Hall hall;
     bool isReserved;

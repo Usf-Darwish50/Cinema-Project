@@ -88,8 +88,13 @@ Slot CinemaC::ShowMovieSlots(MovieC movie)
         cout << slotStr << endl;
     }
 
-    cout << "\nSelect a slot by entering it's number";
+    cout << "\nSelect a slot by entering it's number\n";
     int selection;
     cin >> selection;
     return selection - 1 < slots.size() ? slots[selection - 1] : throw ("invalid slot selection");
+}
+
+Seat CinemaC::ShowSlotSeats(Slot slot)
+{
+    auto seat = slot.ShowSeats();
 }

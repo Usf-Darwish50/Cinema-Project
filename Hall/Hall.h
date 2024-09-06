@@ -11,8 +11,9 @@
 class Hall {
 public:
     Hall(HallE type_ = HallE::HALL_1);
+    std::vector<vector<Seat>>& GetSeats();
     HallE type;
-    std::vector<Seat> seats;
+    std::vector<vector<Seat>> seats;
 };
 
 

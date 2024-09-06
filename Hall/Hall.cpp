@@ -7,3 +7,8 @@
 Hall::Hall(HallE type_){
     type = type_;
 }
+
+vector<vector<Seat>>& Hall::GetSeats()
+{
+    return seats;
+}
