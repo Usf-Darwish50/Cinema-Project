@@ -143,7 +143,9 @@ int main()
     auto movie3 = movieBuilder.SetTitle("The Godfather")    
                             .SetRating(9.2)
                             .AddGenre(MovieGenreE::DRAMA)
-                            .AddSlot(Slot{DayE::MONDAY, TimeE::THREE_PM, hall3})
+                            .AddSlot(slot1)
+                            .AddSlot(slot2)
+                            .AddSlot(slot3)
                             .Build();
 
     movie1.AddSlot(slot1);
@@ -151,8 +153,6 @@ int main()
     movie1.AddSlot(slot3);
     movie2.AddSlot(slot4);
     movie2.AddSlot(slot5);
-    movie3.AddSlot(slot6);
-    movie3.AddSlot(slot7);
 
     cinema.AddMovie(movie1);
     cinema.AddMovie(movie2);
@@ -180,7 +180,6 @@ int main()
     CreditPayment credit_payment;
     DebitPayment debit_payment;
     PayPalPayment paypal_payment;
-
     
     std::cout << "Testing CreditPayment:" << std::endl;
     credit_payment.Pay(credit_credentials);

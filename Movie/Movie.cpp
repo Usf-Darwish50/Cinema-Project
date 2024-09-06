@@ -41,6 +41,7 @@ MovieC MovieCBuilder::Build()
 {
     MovieC movie = MovieC(m_title, m_genre, m_rating, m_slots);
     this->m_genre.clear();
+    this->m_slots.clear();
     return movie;
 }
 

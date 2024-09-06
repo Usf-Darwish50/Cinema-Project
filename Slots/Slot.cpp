@@ -14,22 +14,21 @@ Seat Slot::ShowSeats()
 {
     auto seats = hall.GetSeats();
     int i = 0, j = 0, n = seats[0].size();
+
     for (auto&& row : seats)
     {
         for (auto && seat : row)
         {
             if (seat.isReserved)
-                std::cout << "X" << " ";
+                std::cout << setw(3) << "X" << " ";
             else
-            {
-                std::cout << i * n + j + 1 << " ";
-            }
+                std::cout << setw(3) << std::to_string(i * n + j + 1) << " ";
             ++j;
         }
-        cout << "\n";
+        std::cout << "\n";
         ++i;
         j = 0;
     }
 
-    cout << "Please select a seat";
+    std::cout << "Please select a seat";
 }

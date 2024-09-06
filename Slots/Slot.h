@@ -10,6 +10,7 @@ using namespace std;
 #include "../Hall/Hall.h"
 #include "../Seat/Seat.h"
 #include<vector>
+#include <iomanip>
 #include <map>
 #include <iostream>
 

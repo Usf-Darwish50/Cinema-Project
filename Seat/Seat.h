@@ -6,6 +6,7 @@
 #define SOFTWARE_DESIGN_WORKSHOP_SEAT_H
 
 #include "../Cinema/Common.hpp"
+#include <string>
 
 class Seat {
 public:
