@@ -68,9 +68,9 @@ int main()
 
 
     // Placeholder code, there should be better instantiation code (i.e: Builder) for these functions
-    hall1.seats.push_back(vector<Seat>{});
-    hall1.seats.push_back(vector<Seat>{});
-    hall1.seats.push_back(vector<Seat>{});
+    hall1.seats.emplace_back();
+    hall1.seats.emplace_back();
+    hall1.seats.emplace_back();
 
     for(int i=0; i<10; i++){
         hall1.seats[0].emplace_back(seat1);
@@ -78,9 +78,9 @@ int main()
         hall1.seats[2].emplace_back(seat3);
     }
 
-    hall2.seats.push_back(vector<Seat>{});
-    hall2.seats.push_back(vector<Seat>{});
-    hall2.seats.push_back(vector<Seat>{});
+    hall2.seats.emplace_back();
+    hall2.seats.emplace_back();
+    hall2.seats.emplace_back();
 
     for(int i=0; i<20; i++){
         hall2.seats[0].emplace_back(seat1);
@@ -88,9 +88,9 @@ int main()
         hall2.seats[2].emplace_back(seat3);
     }
 
-    hall3.seats.push_back(vector<Seat>{});
-    hall3.seats.push_back(vector<Seat>{});
-    hall3.seats.push_back(vector<Seat>{});
+    hall3.seats.emplace_back();
+    hall3.seats.emplace_back();
+    hall3.seats.emplace_back();
 
     for(int i=0; i<30; i++){
         hall3.seats[0].emplace_back(seat1);
@@ -103,27 +103,8 @@ int main()
     , slot3(DayE::SATURDAY, TimeE::TWELVE_PM, &hall3)
     , slot4(DayE::SUNDAY, TimeE::SIX_PM, &hall1)
     , slot5(DayE::SUNDAY, TimeE::THREE_PM, &hall2)
-    , slot7(DayE::WEDNESDAY, TimeE::TWELVE_AM, &hall1)
-    , slot6(DayE::THURSDAY, TimeE::TWELVE_AM, &hall3);
-
-    // slot1.halls.emplace_back(hall1);
-    // slot1.halls.emplace_back(hall2);
-    // slot2.halls.emplace_back(hall1);
-    // slot3.halls.emplace_back(hall1);
-    // slot3.halls.emplace_back(hall2);
-    // slot4.halls.emplace_back(hall3);
-    // slot5.halls.emplace_back(hall3);
-    // slot6.halls.emplace_back(hall2);
-    // slot6.halls.emplace_back(hall3);
-    // slot7.halls.emplace_back(hall2);
-    // slot7.halls.emplace_back(hall3);
-    slot1.hall = &hall1;
-    slot2.hall = &hall2;
-    slot3.hall = &hall3;
-    slot4.hall = &hall1;
-    slot5.hall = &hall2;
-    slot6.hall = &hall3;
-    slot7.hall = &hall3;
+    , slot6(DayE::THURSDAY, TimeE::TWELVE_AM, &hall3)
+    , slot7(DayE::WEDNESDAY, TimeE::TWELVE_AM, &hall1);
 
     // Create a few movies
     MovieCBuilder movieBuilder;
@@ -132,42 +113,53 @@ int main()
                             .AddGenre(MovieGenreE::ACTION)
                             .AddGenre(MovieGenreE::THRILLER)
                             .AddSlot(&slot1)
+                            .AddSlot(&slot2)
+                            .AddSlot(&slot3)
                             .Build();
 
     auto movie2 = movieBuilder.SetTitle("The Shawshank Redemption")
-                            .SetRating(9.3)
+                            .SetRating(9.2)
                             .AddGenre(MovieGenreE::DRAMA)
-                            .AddSlot(&slot3)
+                            .AddSlot(&slot4)
+                            .AddSlot(&slot5)
                             .Build();
 
     auto movie3 = movieBuilder.SetTitle("The Godfather")    
                             .SetRating(9.2)
                             .AddGenre(MovieGenreE::DRAMA)
-                            .AddSlot(&slot2)
-                            .AddSlot(&slot4)
-                            .AddSlot(&slot3)
+                            .AddSlot(&slot6)
+                            .AddSlot(&slot7)
                             .Build();
-
-    // movie1.AddSlot(slot1);
-    // movie1.AddSlot(slot2);
-    // movie1.AddSlot(slot3);
-    // movie2.AddSlot(slot4);
-    // movie2.AddSlot(slot5);
 
     cinema.AddMovie(movie1);
     cinema.AddMovie(movie2);
     cinema.AddMovie(movie3);
 
-    // Print all movies
-    auto movie = cinema.ShowMovies();
+    bool exit = false;
+    while(!exit){
+        const MovieC& movie = cinema.ShowMovies();
+        cout << "Selected movie is: " << movie.GetTitle() << endl;
 
-    cout << "Selected movie is: " << movie.GetTitle() << endl;
+        auto slot = cinema.ShowMovieSlots(movie);
+        vector<Seat> selectedSeat = cinema.ShowSlotSeats(slot);
+        cout<<"Selected seats types:-"<<endl;
+        for(auto & seat : selectedSeat){
+            cout<<seat.typeToString(seat.type)<<endl;
+        }
 
-    auto slot = cinema.ShowMovieSlots(movie);
-    // after picking a movie, go through the slots in order to find the 
-    // slots that contain the movie.
-
-    auto seat = cinema.ShowSlotSeats(slot);
+        string option;
+        while(true){
+            cout<<"Do you want to reserve other tickets (yes/no)?"<<endl;
+            cin>>option;
+            if(option == "no"){
+                exit = true;
+                break;
+            }
+            else if(option != "yes"){
+                cout<<"invalid option"<<endl;
+            }
+        }
+    }
     
 #endif
 

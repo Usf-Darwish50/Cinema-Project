@@ -22,8 +22,8 @@ class CinemaC {
         void AddUser(const CustomerC& user) { m_users.emplace_back(user); }
         const vector<CustomerC>& GetUsers() const { return m_users; }
         MovieC ShowMovies(); // This should take the current session's user
-        Slot ShowMovieSlots(MovieC movie);
-        Seat ShowSlotSeats(Slot slot);
+        Slot ShowMovieSlots(const MovieC& movie);
+        vector<Seat> ShowSlotSeats(Slot slot);
 
     private:
         static unique_ptr<CinemaC> m_cinemaInst;

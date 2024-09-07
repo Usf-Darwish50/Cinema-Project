@@ -16,7 +16,7 @@ using namespace std;
 
 class Slot {
 public:
-    Seat ShowSeats();
+    vector<Seat> ShowSeats();
     Slot(DayE day_, TimeE time_, Hall *hall);
     Hall *hall;
     bool isReserved;

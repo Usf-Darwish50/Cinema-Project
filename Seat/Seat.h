@@ -13,6 +13,7 @@ public:
     Seat(SeatE type_);
     SeatE type;
     bool isReserved;
+    string typeToString(SeatE seat);
 };
 
 

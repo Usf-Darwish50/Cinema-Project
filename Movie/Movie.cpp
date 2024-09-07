@@ -34,7 +34,7 @@ MovieCBuilder& MovieCBuilder::AddGenre(MovieGenreE genre)
 MovieCBuilder& MovieCBuilder::AddSlot(Slot* slot)
 {
     if (!slot->isReserved)
-        m_slots.push_back(slot);
+        m_slots.emplace_back(slot);
     return *this;
 }
 

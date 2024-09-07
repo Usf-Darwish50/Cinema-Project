@@ -73,12 +73,12 @@ std::string hallToString(HallE hall) {
     }
 }
 
-Slot CinemaC::ShowMovieSlots(MovieC movie)
+Slot CinemaC::ShowMovieSlots(const MovieC& movie)
 {
     auto slots = movie.GetSlots();
 
     int slotIdx = 1;
-    for (auto&& slot : slots)
+    for (auto& slot : slots)
     {
         // TODO: StringViewer function (adapter class)
         std::string slotStr = to_string(slotIdx++) + ") " + "Day: " + dayToString(slot->day) + "\n" + "Time: " + timeToString(slot->time) + "\n" + "Hall: " + hallToString(slot->hall->type) + "\n";
@@ -94,7 +94,7 @@ Slot CinemaC::ShowMovieSlots(MovieC movie)
     return selection - 1 < slots.size() ? *slots[selection - 1] : throw ("invalid slot selection");
 }
 
-Seat CinemaC::ShowSlotSeats(Slot slot)
+vector<Seat> CinemaC::ShowSlotSeats(Slot slot)
 {
     auto seat = slot.ShowSeats();
 }
